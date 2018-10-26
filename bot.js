@@ -33,7 +33,7 @@ client.user.setGame(`Soft Shop`,"http://twitch.tv/S-F")
 
 
 client.on('message', message => {
-   if (message.content.startsWith("id")) {
+   if (message.content.startsWith("-id")) {
                 if(!message.channel.guild) return message.reply('** This command only for servers**');
 
                var mentionned = message.mentions.users.first();
