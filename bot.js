@@ -160,6 +160,8 @@ client.on('message', message => {
 
 
 client.on('ready', () => {
+
+     if (command =="stay here") {
 var x = client.channels.get("505476184214208520");
 if (x) x.join();
 });
