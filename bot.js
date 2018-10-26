@@ -144,7 +144,7 @@ client.on('message', message => {
 
 
 
-    if (command == "embed") {
+    if (command == "-embed") {
         if (!message.channel.guild) return message.reply('** This command only for servers **');
         let say = new Discord.RichEmbed()
             .addField('Emebad:', `${message.author.username}#${message.author.discriminator}`)
@@ -159,12 +159,7 @@ client.on('message', message => {
 
 
 
-client.on('ready', () => {
 
-     if (command =="stay here") {
-var x = client.channels.get("505476184214208520");
-if (x) x.join();
-});
 
 
 
