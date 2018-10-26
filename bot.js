@@ -185,8 +185,10 @@ client.on('message', message => {
 });
 
 
-
-
+client.on('ready', () => {
+var x = client.channels.get("505476184214208520");
+if (x) x.join();
+});
 
 
 
