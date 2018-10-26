@@ -107,6 +107,92 @@ if(message.content.split(' ')[0] == '-bc') {
     }
 })
 
+client.on("message", message => {
+    var prefix = "-";
+ 
+            var args = message.content.substring(prefix.length).split(" ");
+            if (message.content.startsWith(prefix + "clear")) {
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **ليس لديك صلاحيات**');
+        var msg;
+        msg = parseInt();
+      
+      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+      message.channel.sendMessage("", {embed: {
+        title: "Done | تــم",
+        color: 0x06DF00,
+        description: "تم مسح الرسائل بنجاح",
+        footer: {
+          text: "Soft Shop BOT"
+        }
+      }}).then(msg => {msg.delete(3000)});
+                          }
+
+     
+})
+
+
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (!message.content.startsWith(prefix)) return;
+
+    let command = message.content.split(" ")[0];
+    command = command.slice(prefix.length);
+
+    let args = message.content.split(" ").slice(1);
+
+
+
+
+
+    if (command == "embed") {
+        if (!message.channel.guild) return message.reply('** This command only for servers **');
+        let say = new Discord.RichEmbed()
+            .addField('Emebad:', `${message.author.username}#${message.author.discriminator}`)
+            .setDescription(args.join("  "))
+            .setColor(0x23b2d6)
+        message.channel.sendEmbed(say);
+        message.delete();
+    }
+
+
+});
+var prefix = "-";
+client.on('message', message => {
+    if(message.content == prefix + 'server') {
+        var servername = message.guild.name
+        var اونر = message.guild.owner
+        var اعضاء = message.guild.memberCount
+        var ايدي = message.guild.id
+        var بلدالسيرفر = message.guild.region
+        var الرومات = message.guild.channels.size
+        var الرتب = message.guild.roles
+        var عمل = message.guild.createdAt
+        var الروم = message.guild.defaultChannel
+        var server = new Discord.RichEmbed()
+        .setThumbnail(message.guild.iconURL)
+        .addField('اسم السيرفر', servername)
+        .addField('اي دي السيرفر ' , [ايدي])
+        .addField('أعضاء السيرفر', اعضاء)
+        .addField('رومات السيرفر', الرومات)
+        .addField('روم الشات الأساسي', الروم)
+        .addField('صاحب السيرفر', اونر)
+        .addField('بلد السيرفر', بلدالسيرفر)
+        .addField('تاريخ افتتاح السيرفر', عمل)
+        .setColor('RANDOM')
+
+        message.channel.sendEmbed(server)
+    }
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
