@@ -4,7 +4,7 @@ const prefix = '-'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Nothing`,"http://twitch.tv/S-F")
+client.user.setGame(`Soft Shop`,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -27,5 +27,87 @@ client.user.setGame(`Nothing`,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
 });
+
+
+
+
+
+client.on('message', message => {
+   if (message.content.startsWith("id")) {
+                if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+               var mentionned = message.mentions.users.first();
+    var mentionavatar;
+      if(mentionned){
+          var mentionavatar = mentionned;
+      } else {
+          var mentionavatar = message.author;
+          
+      }
+   let embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
+   .setThumbnail(`${mentionavatar.avatarURL}`)
+  .addField("Name:",`<@` + `${mentionavatar.id}` + `>`, true)
+  .addField('Discrim:',"#" +  `${mentionavatar.discriminator}`, true)
+   .addField("ID:", "**[" + `${mentionavatar.id}` + "]**", true)
+  .addField("Create At:", "**[" + `${mentionavatar.createdAt}` + "]**", true)
+     
+     
+  message.channel.sendEmbed(embed);
+  console.log('[id] Send By: ' + message.author.username)
+    }
+});
+
+
+
+client.on('message', message => {
+     if (message.content === "-bot") {
+     let embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
+  .addField("**Servers:**" , client.guilds.size)
+  .addField("**Users:**", client.users.size)
+  .addField("**channels:**", client.channels.size)
+  .setTimestamp()
+message.channel.sendEmbed(embed);
+    }
+})
+
+
+client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('discord.gg')){
+      if(!message.member.hasPermission('ADMINISTRATOR'))
+        message.delete()
+    return message.reply(`** يمنع نشر الروابط ! **`)
+    }
+});
+
+
+
+client.on('message', message => {
+   let embed = new Discord.RichEmbed()
+
+    let args = message.content.split(' ').slice(1).join(' ');
+     if(!message.channel.guild) return;
+if(message.content.split(' ')[0] == '-bc') {
+         message.react("✔️")
+          let embed = new Discord.RichEmbed()
+    .setColor("#FF00FF")
+    .setThumbnail(message.author.avatarURL)   
+                                      .addField('تم الارسال بواسطة :', "<@" + message.author.id + ">")
+                 message.channel.sendEmbed(embed);
+        message.guild.members.forEach(m => {
+            var bc = new Discord.RichEmbed()
+.addField('**● Sender  :**', `*** → ${message.author.username}#${message.author.discriminator}***`)
+            .addField('***● Server  :***', `*** → ${message.guild.name}***`)               
+    .setColor('#ff0000')
+                 .addField('ّ', args)
+            m.send(``,{embed: bc});
+        });
+    }
+})
+
+
+
 
 client.login(process.env.BOT_TOKEN);
