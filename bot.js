@@ -207,7 +207,7 @@ client.on('message', message => {
              }
            })
            
-     
+const Discord = require('discord.js');     
 const developers = ["346454919328432128"]
 const adminprefix = "-";
 client.on('message', message => {
