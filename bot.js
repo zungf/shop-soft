@@ -137,51 +137,7 @@ client.on("message", message => {
 
 
 
-  client.on("message", async msg => {
-           
-               if (msg.channel.type !== "text") return undefined;
-           
-
-           
-               var args = msg.content.split(" ")
-           
-           
-               if (msg.content.toLowerCase().startsWith(prefix + "clear")) {
-           
-               if(!msg.guild.members.get(msg.author.id).hasPermission("MANAGE_MESSAGES")) return msg.channel.send("You lack permissions.")
-           
-               if(!msg.guild.members.get(client.user.id).hasPermission("MANAGE_MESSAGES")) return msg.channel.send("I lack permissions.")
-           
-               if (!args[1]) return msg.channel.send("Type the number of messages you want to delete")
-           
-               var count = parseInt(args[1]);
-           
-               var fetched = msg.channel.fetchMessages({limit : count})
-           
-               if (isNaN(count)) return msg.channel.send("Only numbers are allowed.")
-           
-               if (count < 0) return msg.channel.send("Unvalid numbers.")
-           
-               if (count == 0) return msg.channel.send("0 messages ???")
-           
-               if (count > 100) return msg.channel.send(`cannot delete ${args[1]} message..`)
-           
-               if (fetched.length == 0) return msg.channel.send(`${msg.channel.name} is empty..`)
-           
-               else {
-               try {
-                   fetched.then(async msgs => {
-                     await msg.channel.bulkDelete(msgs)
-                     await msg.channel.send(`Bulked ${msgs.size-=1} message.`).then(msg => {
-                       msg.delete(4000)
-                     })
-                   })
-               } catch (e) {
-                 console.log(e.stack)
-               }
-               }
-             }
-           })
+  
            
 
 
