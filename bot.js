@@ -131,31 +131,7 @@ client.on("message", message => {
 })
 
 
-client.on('message', message => {
-    if (message.author.bot) return;
-    if (!message.content.startsWith(prefix)) return;
 
-    let command = message.content.split(" ")[0];
-    command = command.slice(prefix.length);
-
-    let args = message.content.split(" ").slice(1);
-
-
-
-
-
-    if (command == "-embed") {
-        if (!message.channel.guild) return message.reply('** This command only for servers **');
-        let say = new Discord.RichEmbed()
-            .addField('Emebad:', `${message.author.username}#${message.author.discriminator}`)
-            .setDescription(args.join("  "))
-            .setColor(0x23b2d6)
-        message.channel.sendEmbed(say);
-        message.delete();
-    }
-
-
-});
 
 
 
@@ -207,42 +183,7 @@ client.on('message', message => {
              }
            })
            
-const Discord = require('discord.js');     
-const developers = ["346454919328432128"]
-const adminprefix = "-";
-client.on('message', message => {
-    var argresult = message.content.split(` `).slice(1).join(' ');
-      if (!developers.includes(message.author.id)) return;
 
-  if (message.content.startsWith(adminprefix + 'play')) {
-    client.user.setGame(argresult);
-      message.channel.send(`**✅   ${argresult}**`)
-  } else
-  if (message.content.startsWith(adminprefix + 'watch')) {
-  client.user.setActivity(argresult, {type:'WATCHING'});
-      message.channel.send(`**✅   ${argresult}**`)
-  } else
-	    if (message.content.startsWith(adminprefix + 'unplay')) {
-  client.user.setActivity(argresult, {type:'xHexon'});
-      message.channel.send(`**✅**`)
-  } else
-  if (message.content.startsWith(adminprefix + 'listen')) {
-  client.user.setActivity(argresult , {type:'LISTENING'});
-      message.channel.send(`**✅   ${argresult}**`)
-  } else
-  if (message.content.startsWith(adminprefix + 'stream')) {
-    client.user.setGame(argresult, "https://www.twitch.tv/idk");
-      message.channel.send(`**✅ ${argresult}**`)
-  }
-  if (message.content.startsWith(adminprefix + 'setname')) {
-  client.user.setUsername(argresult).then
-      message.channel.send(`Changing The Name To ..**${argresult}** `)
-} else
-if (message.content.startsWith(adminprefix + 'setavatar')) {
-  client.user.setAvatar(argresult);
-    message.channel.send(`Changing The Avatar To :**${argresult}** `);
-}
-});
 
 
 
